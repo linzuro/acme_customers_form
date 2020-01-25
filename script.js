@@ -24,3 +24,24 @@ let customers = [
         }
         i++
    })
+   let form = document.querySelector('form')
+   form.addEventListener('submit', (ev)=>{
+    ev.preventDefault()
+
+    let nameInput = form.querySelector('[name="name"]');
+    let dateJoinedInput = form.querySelector('[name="dateJoined"]');
+    let vipInput = document.querySelector('[name="isCHECK"]')
+
+    let customerContainer = document.querySelector('.customerContainer')
+    
+    if(vipInput.checked){
+        customerContainer.innerHTML += `<div class='vip' id='customer'>${nameInput.value}</div>`
+    } else{
+        customerContainer.innerHTML += `<div class='nonvip' id='customer'>${nameInput.value} 
+        Joined on ${dateJoinedInput.value}. Has been a customer </div>`
+    }
+    
+    console.log(nameInput.value)
+   })
+
+
