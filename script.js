@@ -4,16 +4,23 @@ let customers = [
     { id: 4, name: 'shep', email: 'shep@gmail.com', dateJoined: '6/15/019'},
    ];
 
-    
+   customers.forEach((element) =>{
+       element.dateJoined=new Date(element.dateJoined)
+       const diff = (new Date()-element.dateJoined)
+       const oneYear= 1000*60*60*24*365
+       const numOfYears = diff/oneYear
+       element.memberFor=numOfYears.toFixed(2)
+   })
+
+   customers.sort((a,b)=>a.dateJoined-b.dateJoined)
+
    let i=0
    customers.forEach((element)=>{
-        document.querySelectorAll('#customer')[i].innerHTML=`${element["name"]} Joined on ${element["dateJoined"]}`;
+        document.querySelectorAll('#customer')[i].innerHTML=`${element["name"]} Joined on ${element["dateJoined"].toLocaleDateString()}. Has been a customer for ${element['memberFor']} years.`;
         if(element.hasOwnProperty('isVIP')){
             document.querySelectorAll('#customer')[i].className = 'vip';
-            console.log(document.querySelectorAll('#customer')[i].className)
         }else{
             document.querySelectorAll('#customer')[i].className='nonvip';
-            console.log(document.querySelectorAll('#customer')[i].className)
         }
         i++
    })
